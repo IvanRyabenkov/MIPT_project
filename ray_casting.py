@@ -5,7 +5,7 @@ from settings import *
 def mapping(a, b):
     return (a // PIX) * PIX, (b // PIX) * PIX
 
-def ray_casting(screen, player_pos, player_angle):
+def ray_casting(screen, player_pos, player_angle, texture):
 
     x_0, y_0 = player_pos
     x_ul, y_ul = mapping(x_0, y_0)#x up left, y up left - координаты верхнего левого угла квадрата, в котором находится игрок
