@@ -1,7 +1,14 @@
 from settings import *
 import random
-import random
 import pygame
+def invert(a):
+    k = ''
+    for i in range(len(a)):
+        if a[i] == "1":
+            k += "1"
+        else:
+            k += '0'
+    return k
 
 def start_point_generate(n, m):
     return (0,0)
@@ -41,7 +48,7 @@ def transition_choice(x, y, rm):
     else:
         return -1, -1, -1, -1
 
-def create_labyrinth(n=5, m=5):
+def create_labyrinth(n = 5, m = 5):
     """Генерация лабиринта"""
     reach_matrix = []
     for i in range(n):  # создаём матрицу достижимости ячеек
@@ -94,17 +101,20 @@ for i in range(len(MAP)):
             s += a[j]
     MAPP.append(s)
 
-mapp = ["1"*(2*nn + 4), "1"+"0"*(2*nn + 2) +"1"]
+mapp = [ "0" + "1"*(2*nn), "10"+invert(MAPP[2]) + '01']
 for i in range(len(MAPP)):
+
     mapp.append("10"+MAPP[i] + "01")
 mapp.append("1"+"11" + "0"*(2*nn)+"1")
 mapp.append("1"*(2*nn + 4))
-text_map = mapp
 
+text_map = mapp
+print(mapp)
 
 game_map = set()
 mini_map = set()
 collision_walls = []
+
 for i, row in enumerate(text_map):
     for j, obst in enumerate(row) :
         if obst == '1':
