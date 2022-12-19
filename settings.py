@@ -2,7 +2,7 @@ import math
 import numpy as np
 
 WIDTH = 1000
-HEIGHT = 600
+HEIGHT = 800
 FPS = 120
 PIX = 20
 FPS_POS = (WIDTH - 50, 10)
@@ -20,7 +20,7 @@ COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN, GREY]
 nn =((WIDTH // PIX) + 2) // 2
 mm = (HEIGHT // PIX) - 10
 
-player_pos = (1.5*PIX, 1.5*PIX)
+player_pos = (25, 25)
 player_angle = math.pi / 2
 player_speed = 2
 

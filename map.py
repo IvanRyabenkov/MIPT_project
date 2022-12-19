@@ -9,10 +9,17 @@ def invert(a):
         else:
             k += '0'
     return k
+def transcript(a):
+    k = ''
+    for i in range(len(a)):
+        if a[i] == "True":
+            k += "1"
+        else:
+            k += "0"
+    return k
 
 def start_point_generate(n, m):
     return (0,0)
-
 
 def finish_point_generate(start, n, m):
     """Выбор точки конца лабиринта"""
@@ -79,37 +86,34 @@ def create_labyrinth(n = 5, m = 5):
         transition_matrix[tx][ty] = True
         x, y, tx, ty = transition_choice(x, y, reach_matrix)
     return transition_matrix, start, finish  # возвращаем матрицу проходов,начальную и конечную точку
-
+nn = 6
+mm = 5
 
 mapp = list(create_labyrinth(nn, mm))
+
 startpos = mapp[-2]
 endpos = mapp[-1]
 mapp.pop()
 mapp.pop()
-MAP = []
+s = mapp[0]
+print(s)
 MAPP = []
-for i in range(nn):
-    MAP.append(mapp[0][i][:])
-for i in range(len(MAP)):
-    MAP[i] = str(MAP[i]).replace("True","0")
-    MAP[i] = str(MAP[i]).replace("False","1")
-for i in range(len(MAP)):
-    a = "".join(MAP[i])
-    s = ""
-    for j in range(len(a)):
-        if a[j] == "0" or a[j] == "1":
-            s += a[j]
-    MAPP.append(s)
+for i in range(len(s)):
+    stroka = s[i]
+    k = ""
+    for j in range(len(stroka)):
+        if stroka[j] == True:
+            k += "0"
+        else:
+            k += "1"
+    MAPP.append(k)
+boardedmap = ["1"*(nn*2-1)]
+for i in range(mm * 2 + 1):
+    boardedmap.append("1"+MAPP[i] + "1")
+boardedmap.append("1"*(nn*2-1))
 
-mapp = [ "0" + "1"*(2*nn), "10"+invert(MAPP[2]) + '01']
-for i in range(len(MAPP)):
+text_map = boardedmap
 
-    mapp.append("10"+MAPP[i] + "01")
-mapp.append("1"+"11" + "0"*(2*nn)+"1")
-mapp.append("1"*(2*nn + 4))
-
-text_map = mapp
-print(mapp)
 
 game_map = set()
 mini_map = set()
@@ -122,3 +126,4 @@ for i, row in enumerate(text_map):
             mini_map.add((j * MINIMAP_PIX, i * MINIMAP_PIX))
             collision_walls.append(pygame.Rect(j * PIX, i * PIX, PIX, PIX))
 print(endpos)
+print(MAPP)
