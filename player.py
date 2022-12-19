@@ -16,6 +16,7 @@ class Player():
         self.mouse_control()
         self.angle %= 2 * math.pi
         self.rect.center = self.x, self.y
+
     def keys_control(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
