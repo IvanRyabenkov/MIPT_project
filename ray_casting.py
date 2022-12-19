@@ -55,4 +55,8 @@ def ray_casting(screen, player_pos, player_angle):
         color = (color_depth, color_depth , color_depth /2 )  #преобразовани цвета с использованием коэффициента
         pygame.draw.rect(screen, color, (ray * SCALE, HEIGHT / 2 - proj_height // 2, SCALE, proj_height))
         current_angle += DELTA_ANGLE
-
+        
+        offset = int(offset) % PIX
+        wall_column = texture.subsurface(offset * TEXTURE_SCALE, 0, TEXTURE_SCALE, TEXTURE_H) # выдялем подповерхность в виде квадрата, где начальные координаты равны смещению и нач условиями
+        wall_column = pygame.transform.scale(wall_column, (SCALE, proj_height))
+        screen.blit(wall_column, (ray * SCALE, (HEIGHT // 2) - proj_height // 2))
