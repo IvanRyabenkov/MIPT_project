@@ -1,16 +1,21 @@
 import pygame
 from map import game_map
 from settings import *
+
 def mapping(a, b):
     return (a // PIX) * PIX, (b // PIX) * PIX
 
 def ray_casting(screen, player_pos, player_angle):
+
     x_0, y_0 = player_pos
     x_ul, y_ul = mapping(x_0, y_0)#x up left, y up left - координаты верхнего левого угла квадрата, в котором находится игрок
     current_angle = player_angle - FOV / 2
+
     for ray in range(NUM_RAYS):
         sin = math.sin(current_angle)
         cos = math.cos(current_angle)
+        sin = sin if sin else 0.000001
+        cos = cos if cos else 0.000001
 
         if cos >= 0:
             x = x_ul + PIX
@@ -44,9 +49,10 @@ def ray_casting(screen, player_pos, player_angle):
             depth = depth_h
 
         depth *= math.cos(player_angle - current_angle)  # устранение неровностей стен
-        proj_height  = PROJECTION_k / depth #высота проекции
-        color_depth = 255 / (1 + depth * depth * 0.0001) # добавление коэфффициента глубины для цвета стен, зависящего от расстояния
-        color = (color_depth, color_depth /2, color_depth /2)  #преобразовани цвета с использованием коэффициента
+        depth = max(depth, 0.001)
+        proj_height = min((PROJECTION_k / depth), 2 * HEIGHT) #высота проекции
+        color_depth = 255 / (1 + depth ** 2 * 0.0001) # добавление коэфффициента глубины для цвета стен, зависящего от расстояния
+        color = (color_depth, color_depth , color_depth /2 )  #преобразовани цвета с использованием коэффициента
         pygame.draw.rect(screen, color, (ray * SCALE, HEIGHT / 2 - proj_height // 2, SCALE, proj_height))
         current_angle += DELTA_ANGLE
 
