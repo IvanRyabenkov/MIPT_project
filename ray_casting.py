@@ -17,43 +17,32 @@ def ray_casting(screen, player_pos, player_angle, texture):
         sin = sin if sin else 0.000001
         cos = cos if cos else 0.000001
 
-        if cos >= 0:
-            x = x_ul + PIX
-            dx = 1
-        else:
-            x = x_ul
-            dx = -1
-        for i in range(0, WIDTH, PIX):
-            depth_v = (x - x_0) / cos
-            y = y_0 + depth_v * sin
-            if mapping(x+dx, y) in game_map:
+        x, dx = (x_ul + PIX , 1) if cos >= 0 else (x_ul,-1)
+        for i in range(0,WIDTH, PIX):
+            depth_v = (x - x_0)/cos
+            yv = y_0 + depth_v*sin
+            if mapping(x + dx, yv) in game_map:
                 break
             x += dx * PIX
 
-        if sin >= 0:
-            y = y_ul + PIX
-            dy = 1
-        else:
-            y = y_ul
-            dy = -1
+        y, dy = (y_ul + PIX, 1) if sin >= 0 else(y_ul,-1)
         for i in range(0, HEIGHT, PIX):
-            depth_h = (y - y_0) / sin
-            x = x_0 + depth_h * cos
-            if mapping(x, y+dy) in game_map:
+            depth_h = (y - y_0)/sin
+            xh = x_0 + depth_h*cos
+            if mapping(xh, y + dy) in game_map:
                 break
             y += dy * PIX
 
-        if depth_v < depth_h:
-            depth = depth_v
-        else:
-            depth = depth_h
+        depth, offset = (depth_v, yv) if depth_v < depth_h else (depth_h, xh)
+        offset = int(offset) % PIX
+        depth *= math.cos(player_angle - current_angle)
+        depth = max(depth, 0.00001)
+        proj_height = min(int(PROJECTION_k / depth), 2 * HEIGHT)
 
-        depth *= math.cos(player_angle - current_angle)  # устранение неровностей стен
-        depth = max(depth, 0.001)
-        proj_height = min((PROJECTION_k / depth), 2 * HEIGHT) #высота проекции
-        color_depth = 255 / (1 + depth ** 2 * 0.0001) # добавление коэфффициента глубины для цвета стен, зависящего от расстояния
-        color = (color_depth, color_depth , color_depth /2 )  #преобразовани цвета с использованием коэффициента
-        pygame.draw.rect(screen, color, (ray * SCALE, HEIGHT / 2 - proj_height // 2, SCALE, proj_height))
+        wall_column = texture.subsurface(offset * TEXTURE_SCALE, 0, TEXTURE_SCALE, TEXTURE_HEIGHT)
+        wall_column = pygame.transform.scale(wall_column, (SCALE, proj_height))
+        screen.blit(wall_column, (ray * SCALE, HEIGHT//2 - proj_height // 2))
+
         current_angle += DELTA_ANGLE
         
         offset = int(offset) % PIX

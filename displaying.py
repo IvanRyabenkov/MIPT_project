@@ -8,14 +8,12 @@ class Displaying:
         self.screen = screen
         self.screen_minimap = screen_minimap
         self.font = pygame.font.SysFont('comicsansms', 18, bold=True)
-        self.texture = pygame.image.load('6.png').convert()
-        
     def background(self):
         pygame.draw.rect(self.screen, BLUE, (0, 0, WIDTH, HEIGHT / 2))
         pygame.draw.rect(self.screen, GREY, (0, HEIGHT / 2, WIDTH, HEIGHT / 2))
 
     def world(self, player_pos, player_angle):
-        ray_casting(self.screen, player_pos, player_angle, self.texture)
+        ray_casting(self.screen, player_pos, player_angle)
 
     def fps(self, clock):
         display_fps = str(int(clock.get_fps()))

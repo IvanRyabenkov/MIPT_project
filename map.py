@@ -86,8 +86,8 @@ def create_labyrinth(n = 5, m = 5):
         transition_matrix[tx][ty] = True
         x, y, tx, ty = transition_choice(x, y, reach_matrix)
     return transition_matrix, start, finish  # возвращаем матрицу проходов,начальную и конечную точку
-nn = 6
-mm = 5
+nn = 13
+mm = 12
 
 mapp = list(create_labyrinth(nn, mm))
 
@@ -126,4 +126,3 @@ for i, row in enumerate(text_map):
             mini_map.add((j * MINIMAP_PIX, i * MINIMAP_PIX))
             collision_walls.append(pygame.Rect(j * PIX, i * PIX, PIX, PIX))
 print(endpos)
-print(MAPP)

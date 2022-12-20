@@ -24,11 +24,6 @@ player_pos = (25, 25)
 player_angle = math.pi / 2
 player_speed = 2
 
-TEXTURE_W = 1200
-TEXTURE_H = 1200
-
-TEXTURE_SCALE = TEXTURE_W // PIX
-
 FOV = math.pi / 3 #field of views
 NUM_RAYS = 500
 MAX_DEPTH = 800
