@@ -1,11 +1,11 @@
 import math
 import numpy as np
-
+#screen settings
 WIDTH = 1200
 HEIGHT = 800
 FPS = 120
 PIX = 50
-FPS_POS = (WIDTH - 50, 10)
+#colors
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
@@ -17,13 +17,13 @@ BLACK = (0, 0, 0)
 GREY = (128, 128, 128)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN, GREY]
 
-nn =((WIDTH // PIX) + 2) // 2
-mm = (HEIGHT // PIX) - 10
 
+#player spawn settings
 player_pos = (70, 70)
 player_angle = math.pi / 2
 player_speed = 2
 
+#raycast settings
 FOV = math.pi / 3 #field of views
 NUM_RAYS = 300
 MAX_DEPTH = 800
@@ -32,15 +32,19 @@ SCALE = WIDTH // NUM_RAYS
 DIST = NUM_RAYS / (2 * math.tan(FOV/2))
 PROJECTION_k = 3 * DIST * PIX
 
+#minimap settings
 MINIMAP_SCALE = 5
 MINIMAP_PIX =PIX // MINIMAP_SCALE
 
+#timer place
 TIME_POS = (WIDTH - 150, 20)
 TIMER_POS = (WIDTH - 150, 40)
 
+#texture settings
 TEXTURE_WIDTH = 1200
 TEXTURE_HEIGHT = 1200
 TEXTURE_SCALE = TEXTURE_WIDTH // PIX
+
 
 SCORE = 100
 DELTA_SCORE = 0.1

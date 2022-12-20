@@ -39,13 +39,9 @@ def ray_casting(screen, player_pos, player_angle, texture):
         depth = max(depth, 0.00001)
         proj_height = min(int(PROJECTION_k / depth), 2 * HEIGHT)
 
-        wall_column = texture.subsurface(offset * TEXTURE_SCALE, 0, TEXTURE_SCALE, TEXTURE_HEIGHT)
+        wall_column = texture.subsurface(offset * TEXTURE_SCALE, 0, TEXTURE_SCALE, TEXTURE_HEIGHT) #создаем подповерхность для текстуры
         wall_column = pygame.transform.scale(wall_column, (SCALE, proj_height))
         screen.blit(wall_column, (ray * SCALE, HEIGHT // 2 - proj_height // 2))
 
         current_angle += DELTA_ANGLE
 
-        offset = int(offset) % PIX
-        wall_column = texture.subsurface(offset * TEXTURE_SCALE, 0, TEXTURE_SCALE, TEXTURE_HEIGHT)  # выдялем подповерхность в виде квадрата, где начальные координаты равны смещению и нач условиями
-        wall_column = pygame.transform.scale(wall_column, (SCALE, proj_height))
-        screen.blit(wall_column, (ray * SCALE, (HEIGHT // 2) - proj_height // 2))

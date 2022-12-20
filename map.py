@@ -22,10 +22,10 @@ def start_point_generate(n, m):
     return (0,0)
 
 def finish_point_generate(start, n, m):
-    """Выбор точки конца лабиринта"""
+    #конец лабиринта"
     return n - 1 - start[0], m - 1 - start[1]
 def transition_choice(x, y, rm):
-    """Функция выбора дальнейшего пути в генерации лабиринта"""
+    #Выбор пути"
     choice_list = []
     if x > 0:
         if not rm[x - 1][y]:
@@ -56,7 +56,7 @@ def transition_choice(x, y, rm):
         return -1, -1, -1, -1
 
 def create_labyrinth(n = 5, m = 5):
-    """Генерация лабиринта"""
+    "Генерация лабиринта"
     reach_matrix = []
     for i in range(n):  # создаём матрицу достижимости ячеек
         reach_matrix.append([])
@@ -87,7 +87,7 @@ def create_labyrinth(n = 5, m = 5):
         x, y, tx, ty = transition_choice(x, y, reach_matrix)
     return transition_matrix, start, finish  # возвращаем матрицу проходов,начальную и конечную точку
 nn = 13
-mm = 12
+mm = nn -1
 
 mapp = list(create_labyrinth(nn, mm))
 
@@ -96,7 +96,6 @@ endpos = mapp[-1]
 mapp.pop()
 mapp.pop()
 s = mapp[0]
-print(s)
 MAPP = []
 for i in range(len(s)):
     stroka = s[i]
@@ -111,7 +110,7 @@ boardedmap = ["1"*(nn*2-1)]
 for i in range(mm * 2 + 1):
     boardedmap.append("1"+MAPP[i] + "1")
 boardedmap.append("1"*(nn*2-1))
-
+#текстовая карта прямоугольников на карте
 text_map = boardedmap
 
 

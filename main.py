@@ -13,14 +13,17 @@ from displaying import Displaying
 from map import endpos
 
 pygame.init()
+#music_settings
 pygame.mixer.music.load("sounds/music2.mp3")
 pygame.mixer.music.set_volume(0.1)
+#screen setthings and minimap
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 screen_minimap = pygame.Surface((WIDTH * 1.05 // MINIMAP_SCALE, HEIGHT * 1.7 // MINIMAP_SCALE))
 clock = pygame.time.Clock()
 player = Player()
 displaying = Displaying(screen, screen_minimap)
 
+#Menu class
 class Menu:
     def __init__(self, punckts = [120, 140, "Punkt", (250, 250, 250), (250,30,250)]):
         self.punkts = punckts
@@ -74,7 +77,7 @@ game.menu()
 pygame.mixer.music.play(loops = -1, start = 0.0, fade_ms = 0)
 
 running = True
-
+#main cycle
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -94,9 +97,6 @@ while running:
     x_end, y_end = endpos[0], endpos[1]
     if (mapping(x, y)) == mapping(1150, 1250):
         game.menu()
-
-
-
 
 
     #displaying.fps(clock)

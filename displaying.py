@@ -11,8 +11,6 @@ class Displaying:
         self.texture = pygame.image.load("6.png").convert()
 
 
-        self.menu_trigger = True
-        #self.menu_picter = pygame.image.load("img/2.png").convert()
     def background(self):
         pygame.draw.rect(self.screen, BLUE, (0, 0, WIDTH, HEIGHT / 2))
         pygame.draw.rect(self.screen, GREY, (0, HEIGHT / 2, WIDTH, HEIGHT / 2))
