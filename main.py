@@ -16,26 +16,13 @@ clock = pygame.time.Clock()
 player = Player()
 displaying = Displaying(screen, screen_minimap)
 
-class Menu:
-    def __init__(self):
-        self._option_surfaces = []
-        self._callbacks = []
-        self._current_option_index = []
-
-    def append_option(self, option):
-
-
-
-
 
 
 
 while True:
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
-
     player.movement()
     screen.fill(BLACK)
     displaying.background()
@@ -53,3 +40,4 @@ while True:
 
     pygame.display.flip()
     clock.tick(FPS)
+quit()
