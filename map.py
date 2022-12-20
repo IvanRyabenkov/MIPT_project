@@ -126,3 +126,4 @@ for i, row in enumerate(text_map):
             mini_map.add((j * MINIMAP_PIX, i * MINIMAP_PIX))
             collision_walls.append(pygame.Rect(j * PIX, i * PIX, PIX, PIX))
 print(endpos)
+

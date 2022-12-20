@@ -8,10 +8,13 @@ from player import Player
 from map import game_map
 from map import mini_map
 from ray_casting import ray_casting
+from ray_casting import mapping
 from displaying import Displaying
-global lol
-lol = 0
+from map import endpos
+
 pygame.init()
+pygame.mixer.music.load("sounds/music.mp3")
+pygame.mixer.music.set_volume(0.1)
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 screen_minimap = pygame.Surface((WIDTH * 1.05 // MINIMAP_SCALE, HEIGHT * 1.7 // MINIMAP_SCALE))
 clock = pygame.time.Clock()
@@ -68,18 +71,11 @@ game.menu()
 
 
 
+pygame.mixer.music.play(loops = -1, start = 0.0, fade_ms = 0)
 
+running = True
 
-
-
-
-
-
-
-
-
-
-while True:
+while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
@@ -87,17 +83,24 @@ while True:
     screen.fill(BLACK)
     displaying.background()
     displaying.world(player.pos(), player.angle)
-
+    displaying.timer()
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_g]:
         displaying.mini_map(player)
-        lol += 0.01
-    print(lol)
+        SCORE -= DELTA_SCORE
+    #print(SCORE)
+    x, y = player.pos()
+    x_end, y_end = endpos[0], endpos[1]
+    if (mapping(x, y)) == mapping(1150, 1250):
+        exit()
+
+
+
 
 
     #displaying.fps(clock)
-
+    displaying.timer()
 
     pygame.display.flip()
     clock.tick(FPS)

@@ -7,12 +7,12 @@ class Displaying:
     def __init__(self, screen, screen_minimap):
         self.screen = screen
         self.screen_minimap = screen_minimap
-        self.font = pygame.font.SysFont('comicsansms', 18, bold=True)
-        self.texture = pygame.image.load("img/1.png").convert()
+        self.font = pygame.font.SysFont('comicsansms', 24, bold=True)
+        self.texture = pygame.image.load("6.png").convert()
 
 
         self.menu_trigger = True
-        self.menu_picter = pygame.image.load("img/2.png").convert()
+        #self.menu_picter = pygame.image.load("img/2.png").convert()
     def background(self):
         pygame.draw.rect(self.screen, BLUE, (0, 0, WIDTH, HEIGHT / 2))
         pygame.draw.rect(self.screen, GREY, (0, HEIGHT / 2, WIDTH, HEIGHT / 2))
@@ -25,6 +25,11 @@ class Displaying:
         render = self.font.render(display_fps, 0, BLACK)
         self.screen.blit(render, FPS_POS)
 
+    def timer(self):
+        current_time = 'Time ' + str(int(pygame.time.get_ticks()) // 1000) + ' sec'
+        render = self.font.render(current_time, 0, BLACK)
+        self.screen.blit(render, TIMER_POS)
+
     def mini_map(self, player):
         self.screen_minimap.fill(WHITE)
         pygame.draw.line(self.screen_minimap, GREEN, (player.x // MINIMAP_SCALE, player.y // MINIMAP_SCALE),
@@ -34,5 +39,4 @@ class Displaying:
         for x, y in mini_map:  #2д карта
             pygame.draw.rect(self.screen_minimap, GREY, (x, y, MINIMAP_PIX, MINIMAP_PIX))
         self.screen.blit(self.screen_minimap, (10, 10))
-
 

@@ -22,7 +22,7 @@ mm = (HEIGHT // PIX) - 10
 
 player_pos = (70, 70)
 player_angle = math.pi / 2
-player_speed = 1.5
+player_speed = 5
 
 FOV = math.pi / 3 #field of views
 NUM_RAYS = 300
@@ -36,8 +36,11 @@ MINIMAP_SCALE = 5
 MINIMAP_PIX =PIX // MINIMAP_SCALE
 
 TIME_POS = (WIDTH - 150, 20)
-TIMER_POS = (WIDTH - 100, 20)
+TIMER_POS = (WIDTH - 150, 40)
 
 TEXTURE_WIDTH = 1200
 TEXTURE_HEIGHT = 1200
 TEXTURE_SCALE = TEXTURE_WIDTH // PIX
+
+SCORE = 100
+DELTA_SCORE = 0.1
