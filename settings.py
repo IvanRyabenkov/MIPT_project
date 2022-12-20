@@ -22,7 +22,7 @@ mm = (HEIGHT // PIX) - 10
 
 player_pos = (70, 70)
 player_angle = math.pi / 2
-player_speed = 5
+player_speed = 2
 
 FOV = math.pi / 3 #field of views
 NUM_RAYS = 300
