@@ -8,12 +8,17 @@ class Displaying:
         self.screen = screen
         self.screen_minimap = screen_minimap
         self.font = pygame.font.SysFont('comicsansms', 18, bold=True)
+        self.texture = pygame.image.load("img/1.png").convert()
+
+
+        self.menu_trigger = True
+        self.menu_picter = pygame.image.load("img/2.png").convert()
     def background(self):
         pygame.draw.rect(self.screen, BLUE, (0, 0, WIDTH, HEIGHT / 2))
         pygame.draw.rect(self.screen, GREY, (0, HEIGHT / 2, WIDTH, HEIGHT / 2))
 
     def world(self, player_pos, player_angle):
-        ray_casting(self.screen, player_pos, player_angle)
+        ray_casting(self.screen, player_pos, player_angle, self.texture)
 
     def fps(self, clock):
         display_fps = str(int(clock.get_fps()))
@@ -29,3 +34,5 @@ class Displaying:
         for x, y in mini_map:  #2д карта
             pygame.draw.rect(self.screen_minimap, GREY, (x, y, MINIMAP_PIX, MINIMAP_PIX))
         self.screen.blit(self.screen_minimap, (10, 10))
+
+

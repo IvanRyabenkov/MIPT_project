@@ -1,10 +1,10 @@
 import math
 import numpy as np
 
-WIDTH = 1000
+WIDTH = 1200
 HEIGHT = 800
 FPS = 120
-PIX = 20
+PIX = 50
 FPS_POS = (WIDTH - 50, 10)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -20,12 +20,12 @@ COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN, GREY]
 nn =((WIDTH // PIX) + 2) // 2
 mm = (HEIGHT // PIX) - 10
 
-player_pos = (25, 25)
+player_pos = (70, 70)
 player_angle = math.pi / 2
-player_speed = 2
+player_speed = 1
 
 FOV = math.pi / 3 #field of views
-NUM_RAYS = 500
+NUM_RAYS = 300
 MAX_DEPTH = 800
 DELTA_ANGLE = FOV / NUM_RAYS
 SCALE = WIDTH // NUM_RAYS
@@ -37,3 +37,7 @@ MINIMAP_PIX =PIX // MINIMAP_SCALE
 
 TIME_POS = (WIDTH - 150, 20)
 TIMER_POS = (WIDTH - 100, 20)
+
+TEXTURE_WIDTH = 1200
+TEXTURE_HEIGHT = 1200
+TEXTURE_SCALE = TEXTURE_WIDTH // PIX
